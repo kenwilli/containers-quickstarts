@@ -4,10 +4,9 @@ ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v3/clients/3.11.
 ENV HOME /home/tool-box
 
 RUN dnf -y update && \
-    INSTALL_PKGS="git tree vim unzip python-pip jq openssl" && \
+    INSTALL_PKGS="git tree vim unzip python-pip jq origin-clients" && \
     dnf -y install $INSTALL_PKGS && \
     dnf clean all && \
-    curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf - && \
     mkdir -m 775 $HOME && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6
