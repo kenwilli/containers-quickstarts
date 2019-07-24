@@ -4,7 +4,7 @@ ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v3/clients/3.11.
 ENV HOME /home/tool-box
 
 RUN dnf -y update && \
-    INSTALL_PKGS="git tree vim unzip python-pip jq R-openssl.x86_64 libssh.x86_64" && \
+    INSTALL_PKGS="git tree vim unzip python-pip jq libxcrypt-compat.x86_64" && \
     dnf -y install $INSTALL_PKGS && \
     dnf clean all && \
     curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf - && \
