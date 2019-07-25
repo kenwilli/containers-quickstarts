@@ -2,6 +2,7 @@ FROM fedora:latest
 
 ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v3/clients/3.11.98/linux/oc.tar.gz
 ENV HOME /home/tool-box
+ENV PATH /home/tool-box/.local/bin:$PATH
 
 RUN dnf -y update && \
     INSTALL_PKGS="git tree vim unzip python-pip jq compat-openssl10.x86_64 docker" && \
@@ -12,7 +13,6 @@ RUN dnf -y update && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
     pip3 install --upgrade --no-cache-dir --user awscli && \
-    export PATH=/home/tool-box/.local/bin:$PATH
 
 WORKDIR $HOME
 
