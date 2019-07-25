@@ -12,7 +12,7 @@ RUN dnf -y update && \
     mkdir -m 775 $HOME && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
-    pip3 install --upgrade --no-cache-dir --user -t /home/tool-box/ awscli
+    pip3 install awscli --upgrade --user
 
 WORKDIR $HOME
 
