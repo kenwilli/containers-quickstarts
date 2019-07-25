@@ -2,7 +2,7 @@ FROM fedora:latest
 
 ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v3/clients/3.11.98/linux/oc.tar.gz
 ENV HOME /home/tool-box
-ENV PATH /home/tool-box/.local/bin:$PATH
+ENV PATH="/home/tool-box/.local/bin:${PATH}"
 
 RUN dnf -y update && \
     INSTALL_PKGS="git tree vim unzip python-pip jq compat-openssl10.x86_64 docker" && \
