@@ -10,7 +10,9 @@ RUN dnf -y update && \
     curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf - && \
     mkdir -m 775 $HOME && \
     chmod 775 /etc/passwd && \
-    pip install git+https://github.com/ansible/ansible.git@stable-2.6
+    pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
+    pip3 install --upgrade --no-cache-dir --user awscli && \
+    export PATH=/home/tool-box/.local/bin:$PATH
 
 WORKDIR $HOME
 
