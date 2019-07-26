@@ -19,10 +19,9 @@ WORKDIR $HOME
 ADD ./root /
 
 RUN chmod u+x /usr/local/bin/run
+RUN chmod 777 /home/tool-box/.local/*
 
 USER 1001
-
-RUN chmod 777 /home/tool-box/.local/*
 
 ENTRYPOINT ["/usr/local/bin/run"]
 CMD ["sleep", "infinity"]
