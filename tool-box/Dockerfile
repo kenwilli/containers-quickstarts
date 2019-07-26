@@ -19,7 +19,7 @@ WORKDIR $HOME
 ADD ./root /
 
 RUN chmod u+x /usr/local/bin/run
-RUN chmod 777 /home/tool-box/.local/*
+RUN chmod -R 777 /home/
 
 USER 1001
 
