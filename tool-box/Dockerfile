@@ -22,7 +22,7 @@ RUN chmod u+x /usr/local/bin/run
 
 USER 1001
 
-RUN chmod 777 /home/*
+RUN chmod 777 /home/tool-box/.local/*
 
 ENTRYPOINT ["/usr/local/bin/run"]
 CMD ["sleep", "infinity"]
