@@ -12,14 +12,14 @@ RUN dnf -y update && \
     mkdir -m 775 $HOME && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
-    pip3 install awscli --upgrade --user && \
-    chmod 775 /home/tool-box/.local/bin
+    pip3 install awscli --upgrade --user
 
 WORKDIR $HOME
 
 ADD ./root /
 
-RUN chmod u+x /usr/local/bin/run
+RUN chmod u+x /usr/local/bin/run && \
+    chmod U+x /home/tool-box/.local/bin
 
 USER 1001
 
