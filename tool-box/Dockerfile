@@ -19,7 +19,7 @@ WORKDIR $HOME
 ADD ./root /
 
 RUN chmod u+x /usr/local/bin/run && \
-    chmod U+x /home/tool-box/.local/bin
+    chmod u+x /home/tool-box/.local/bin
 
 USER 1001
 
