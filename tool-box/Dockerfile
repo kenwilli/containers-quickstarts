@@ -13,6 +13,9 @@ RUN dnf -y update && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
     pip3 install awscli --upgrade --user
+    sudo groupadd docker
+    sudo usermod -aG docker tool-box
+    sudo usermod -aG wheel tool-box
 
 WORKDIR $HOME
 
