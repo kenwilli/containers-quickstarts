@@ -15,7 +15,7 @@ RUN dnf -y update && \
     pip3 install awscli --upgrade --user && \
     groupadd docker && \
     usermod -aG docker $(whoami) && \
-    usermod -aG wheel $(whoami)
+    usermod -aG wheel tool-box
 
 WORKDIR $HOME
 
