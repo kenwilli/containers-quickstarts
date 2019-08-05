@@ -1,30 +1,28 @@
 FROM fedora:latest
 
-ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v3/clients/3.11.98/linux/oc.tar.gz
+ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v3/clients/3.11.127/linux/oc.tar.gz
 ENV HOME /home/tool-box
-ENV PATH="/home/tool-box/.local/bin:${PATH}"
 
 RUN dnf -y update && \
-    INSTALL_PKGS="git tree vim unzip python-pip jq compat-openssl10.x86_64 docker" && \
+    INSTALL_PKGS="git tree vim unzip python-pip jq docker" && \
     dnf -y install $INSTALL_PKGS && \
     dnf clean all && \
     curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf - && \
     mkdir -m 775 $HOME && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
-    pip3 install awscli --upgrade --user && \
-    groupadd docker && \
-    usermod -aG docker $(whoami) && \
-    usermod -aG wheel tool-box
+    pip3 install awscli --upgrade --user
+
 
 WORKDIR $HOME
 
 ADD ./root /
 
-RUN chmod u+x /usr/local/bin/run
-RUN chmod -R 777 /home/
+RUN chmod u+x /usr/local/bin/run && \
+    chmod -R 777 /home/
 
 USER 1001
 
 ENTRYPOINT ["/usr/local/bin/run"]
 CMD ["sleep", "infinity"]
+
