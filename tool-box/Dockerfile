@@ -13,7 +13,9 @@ RUN dnf -y update && \
     chmod 775 /etc/passwd && \
     pip install git+https://github.com/ansible/ansible.git@stable-2.6 && \
     pip3 install awscli --upgrade --user && \
-    groupadd docker
+    groupadd docker && \
+    usermod -aG docker $(whoami) && \
+    usermod -aG wheel $(whoami)
 
 WORKDIR $HOME
 
@@ -21,8 +23,6 @@ ADD ./root /
 
 RUN chmod u+x /usr/local/bin/run
 RUN chmod -R 777 /home/
-RUN usermod -aG docker tool-box && \
-    usermod -aG wheel tool-box
 
 USER 1001
 
